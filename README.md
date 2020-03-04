@@ -46,6 +46,6 @@ We use PCA to find the 20 important PCA variables to determine those passwordsâ€
 We use the Hamming distance to calculate the new input password to those 8 clustersâ€™ centering passwords. Then we can give a measurement of the distance between the inserted password to the closet center of the cluster. (We insert a new password then predict the frequency of the times this inserted password will appear in the data set we gathered, then we will measure the outcome in terms of strong, which means the prediction outcome will be relatively small, medium, weak)
 
 ### Key result:
-
-
+we successfuly determined the strengh for the inserted password.
 ### Future Work:
+
