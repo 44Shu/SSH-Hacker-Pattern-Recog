@@ -47,6 +47,6 @@ We used Principal Component Analysis(PCA) to find the 20 most important PCA vari
 We used the Damerau–Levenshtein distance and a slightly modified Hamming distance to calculate the new input password to those 8 clusters’ centering passwords. The Hamming distance we choose to implement considers the extra characters between two strings as differing. We can calculate the distance between an inserted password to the medoids of the cluster. We insert a new password then predict the frequency this inserted password will appear in the data set we gathered using a machine learning model we trained, then we measure the outcome in terms of the passwords' strength, which mean that the prediction outcome will be along the lines of strong, medium, or weak.
 
 ### Key Result:
-Successfully determine the strengh for an inserted password.
+Successfully determine the strengh for an inserted password.(Planned)
 ### Future Work:
 Building a machine learning model to predict an inputted password's frequency based on our data of passwords' distances.
