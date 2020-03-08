@@ -49,4 +49,4 @@ We used the Damerau–Levenshtein distance and a slightly modified Hamming dista
 ### Key Result:
 Successfully determine the strengh for an inserted password.
 ### Future Work:
-
+Building a machine learning model to predict an inputted password's frequency based on our data of passwords' distances.
