@@ -1,12 +1,13 @@
 # ssh-readme
 ### Abstract:
-#### Use the following methodology
+#### Use of the Following Methodology
 * PCA
 * K-means Clustering
 * Hamming Distance
 * Damerau–Levenshtein distance
+* Machine Learning
  	
-  This project determines the password’s security by comparing its patterns with the dataset using the K-means process to sort out 8 clusters and found their corresponded central passwords. We present our results in a visualized distance comparison to the 8 centers through the use of Damerau–Levenshtein distance and Hamming Distance. 
+  This project determines the password’s security by comparing its patterns within the dataset using the K-means clustering process to sort out 8 clusters and finding out their corresponded central passwords(the medoids). We present our results in a visualized distance comparison to the 8 medoids through the use of Damerau–Levenshtein distance and Hamming Distance. 
  
 ### Contributors:
 Anthony Yang <br />
@@ -24,28 +25,28 @@ Only 5% of companies’ folders are properly protected, on average. (Varonis)
 Data breaches exposed 4.1 billion records in the first half of 2019. (RiskBased)
 
 
-### Methodology: Visualization the password pattern
-The data was gathered from (https://www.kaggle.com/lako65/ssh-brute-force-ipuserpassword). The dataset was from an exposing SSH server, enabled the password authentication and exposed port 22 to the internet in a week to collect around 50,000 hackers using usernames and passwords. The dataset looks like this after converting it to a data frame and cleaning the passwords with excessive digits (more than 20 in particular): 
+### Methodology: Visualization of Password Patterns
+The data was gathered from (https://www.kaggle.com/lako65/ssh-brute-force-ipuserpassword). The dataset was collected by exposing an open port secured SSH server to the internet and logging the attempted attacks’ usernames and passwords guesses for around a week. The dataset looks like this after converting it to a data frame and cleaning the passwords with excessive digits (more than 20 in particular): 
 
 Inline-style: 
 ![alt text](https://github.com/44Shu/ssh-readme/blob/master/SSH%20DATASET%20PIC.png)
 
 
-We use a 94-dimensional matrix to present a password. Each column represents a character from "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~!@#$%^&*()_+-={}|:\"<>?[]\\;',./ " (0 if the corresponding char, not present and 1 if present)
-We use PCA to find the 20 important PCA variables to determine those passwords’ patterns like the following: 
+We used a 94-dimensional matrix to present a password. Each column represents a character from "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~!@#$%^&*()_+-={}|:\"<>?[]\\;',./ " (0 if the corresponding char, not present and 1 if present)
+We used Principal Component Analysis(PCA) to find the 20 most important PCA variables to determine those passwords’ patterns like the following: 
 
 ![alt text](https://github.com/44Shu/ssh-readme/blob/master/PCA%20chart.png)
 
-### Methodology: clustering and centering:
+### Methodology: Clustering and Finding Medoids:
 * A brief overview of K-mean:  k-means clustering aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean, serving as a prototype of the cluster. This results in a partitioning of the data space into Voronoi cells. 
-* To decide how many clusters we want to use in a most efficient manner, we visualize the clustering from 2 clusters to 20 clusters as following:
+* To decide how many clusters we want to use in the most efficient manner, we visualize the clustering from 2 clusters to 20 clusters as following:
 
 ![alt text](https://github.com/44Shu/ssh-readme/blob/master/Kmean_clustering.png)
 
-* We use K-mean to find our set 8 clusters, which is the approximated saddle point, and then find the closest actual password related to those 8 clusters’ centers, which may not be the actual highest frequency password.
-We use the Hamming distance to calculate the new input password to those 8 clusters’ centering passwords. Then we can give a measurement of the distance between the inserted password to the closet center of the cluster. (We insert a new password then predict the frequency of the times this inserted password will appear in the data set we gathered, then we will measure the outcome in terms of strong, which means the prediction outcome will be relatively small, medium, weak)
+* We used K-mean to find our 8 clusters, which is the approximated saddle point, and then find the closest actual password related to those 8 clusters’ centers.
+We used the Damerau–Levenshtein distance and a slightly modified Hamming distance to calculate the new input password to those 8 clusters’ centering passwords. The Hamming distance we choose to implement considers the extra characters between two strings as differing. We can calculate the distance between an inserted password to the medoids of the cluster. We insert a new password then predict the frequency this inserted password will appear in the data set we gathered using a machine learning model we trained, then we measure the outcome in terms of the passwords' strength, which mean that the prediction outcome will be along the lines of strong, medium, or weak.
 
-### Key result:
-we successfuly determined the strengh for the inserted password.
+### Key Result:
+Successfully determine the strengh for an inserted password.
 ### Future Work:
 
